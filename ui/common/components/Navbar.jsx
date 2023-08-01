@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button, Flex, Stack, Text, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { Logout } from './logout';
+import { Logout } from './Logout';
 
 export function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -28,7 +28,7 @@ export function Navbar() {
             fontFamily="heading"
             textAlign="left"
           >
-            Simple Tasks
+            Simple Tasks (Webpack)
           </Text>
         </Flex>
 

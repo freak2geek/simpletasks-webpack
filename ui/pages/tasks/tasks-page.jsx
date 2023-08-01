@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import { Meteor } from 'meteor/meteor';
 import { TaskForm } from './components/task-form';
 import { Box, Button, Heading, HStack, Spinner, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 import { TaskItem } from './components/task-item';
@@ -12,7 +13,7 @@ export default function TasksPage() {
       <Stack textAlign="center" spacing={{ base: 8 }} py={{ base: 10 }}>
         <Heading fontWeight={600}>
           <Text as="span" bgGradient="linear(to-l, #675AAA, #4399E1)" bgClip="text">
-            Simple Tasks
+            Simple Tasks (Webpack)
           </Text>
         </Heading>
       </Stack>
@@ -48,6 +49,15 @@ export default function TasksPage() {
                 onClick={() => setHideDone(!hideDone)}
               >
                 {hideDone ? 'Show All Tasks' : 'Show Pending'}
+              </Button>
+              <Button
+                  bg="teal.600"
+                  color="white"
+                  colorScheme="teal"
+                  size="xs"
+                  onClick={() => Meteor.call('insertRandomTask')}
+              >
+                Add Random Task
               </Button>
             </Stack>
           </HStack>
