@@ -23,7 +23,7 @@ The decision to choose Webpack is based on its robustness, wide usage, and conti
 The solution is straightforward: mix the power of both Meteor and Webpack to construct your app.
 
 - Let Webpack to compile just your app code, taking advantage of all the bundler benefits it offers.
-- Let Meteor seamlessly insert its modules into the app code.
+- Let Meteor insert its modules into the app code.
 
 This approach allows you to enjoy the best of both worlds.
 
