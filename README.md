@@ -31,7 +31,7 @@ With Webpack, your app bundle becomes lean, yet robust and secure, ready to go l
 
 - The `webpack.config.js` file contains essential configurations for both client and server environments, covering development and production settings.
 - The `ui/main.jsx` and `api/main.js` files are designated as entry points for the app code and are properly configured in Webpack to facilitate the app's compilation.
-- Two app artifacts are generated after Webpack compilation: `client/client.js` and `server/server.js`. These files become the new entry points for the Meteor app, allowing it to recognize and utilize the Meteor packages properly.
+- Two app artifacts are generated after Webpack compilation: `client/client.js` and `server/server.js`. These files become the new entry points for the Meteor app (`meteor/mainModule` in `package.json`), allowing it to recognize and utilize the Meteor packages properly.
 
 The expected outcome is achieved: the app code is compiled by Webpack, and then Meteor runs the Webpack application, making it fully compatible with the Meteor packages. It's important to note that specific configurations can also be applied in the webpack.config.js file to fine-tune the setup for individual requirements.
 
