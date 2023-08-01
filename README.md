@@ -83,13 +83,17 @@ Webpack configures Tree Shaking effictively when goind to production mode.
 
 The best way to check about it is to run the bundler visualizer. In this app example, the bundled has been reduced from ~1.8MB to 1MB. Just imagine in other large apps.
 
+![](./README-Assets/tree-shaking.jpg)
+
 ### Secured Code
 
 Thanks to the [Webpack's DefinePlugin](https://webpack.js.org/plugins/define-plugin/) the configuration describes a variable replacement for `Meteor.isXXX`-like variables. Therefore, any specific environment code will be effectively wiped out from the final bundle. Like `Meteor.isServer` and `Meteor.isClient` removing properly behaviors and sensitive information from their envs. Also enabled for `Meteor.isDevelopment` and `Meteor.isProduction`.
 
-And if that is not enough, thanks to a Webpack plugin named [`webpack-strip-block`](https://www.npmjs.com/package/webpack-strip-block), comment delimiters exist to remove parts of the code the same way. Like `/* server:start */ CODE /* server:end */` that will remove properly the server code from the client code.
+And if that is not enough, thanks to a Webpack plugin named [`webpack-strip-block`](https://www.npmjs.com/package/webpack-strip-block), comment delimiters exist to remove parts of the code the same way. Like `/* server:start */ CODE /* server:end */` that will remove properly the server code from the client code. There is an intersting use case on exposing a client method sync and the server as async which can be useful for Fiber migration.
 
 These two are also limitations on Meteor bundler.
+
+![](./README-Assets/secured-code.png)
 
 ### Cache
 
