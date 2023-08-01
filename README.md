@@ -1,35 +1,45 @@
-# Charm - Simple Tasks
-Built with my new preferred stack: CHARM (Chakra-UI, React, Meteor).
+# Simple Tasks (Webpack)
 
-## What and why this stack?
-The main goal is to make development as quick and efficient as possible. To achieve this, I have selected these technologies:
+Describes a configuration to use Webpack with Meteor (or actually any bundler you like). Built using as a small example described in this repository: [fredmaiaarantes/simpletasks](https://github.com/fredmaiaarantes/simpletasks).
 
--   [Meteor ](https://meteor.com/)- A full-stack framework focused on productivity that uses RPCs and Sockets for reactivity.
--   [React ](https://reactjs.org/)- A minimal UI library for building on the web.
--   [Chakra UI ](https://chakra-ui.com/)- A React library focused on simplicity and productivity.
--   [React Hook Form ](https://react-hook-form.com/)- Performant, flexible, and extensible forms with easy-to-use validation.
--   [MongoDB ](https://www.mongodb.com/)- A NoSQL database that is really powerful for prototyping and creating ready-to-use apps out of the box.
--   [Meteor Cloud ](https://meteor.com/cloud)-  A cloud provider that makes deploying a server with a database included painless.
+Demo: https://simpletaskswebpack.meteorapp.com
 
+Original: https://simpletasks.meteorapp.com
 
-Demo: https://simpletasks.meteorapp.com/
+Webpack integration by: [@nachocodoner](https://twitter.com/nachocodoner)
 
-Author: [@fredmaiaarantes](https://twitter.com/fredmaiaarantes)
+## Motivation
 
-Contributors: [@hschmaiske](https://twitter.com/hschmaiske), [@gab_grubba](https://twitter.com/gab_grubba)
+Over the years, Meteor has been instrumental in supporting numerous companies and individuals in building their products, providing a tool that facilitates the process of product development and delivery. However, as technology advances and becomes more sophisticated, it is a must for us to embrace new tools that can enhance security, performance, and development speed to adapt ourselves with the growing demands of our products.
 
-### Features:
-- Sign In / Sign Up
-- List Tasks by logged-in user
-- Add Task
-- Remove Task
-- Mark Task as Done
-- Filter Tasks by Status
+One area where Meteor has yet to evolve significantly is its bundler. Introducing features like Tree Shaking would be highly advantageous for any expanding project. Although [Meteor has made attempts to include it in the core](https://github.com/meteor/meteor/pull/11164), proper implementation has not arrived yet. In contrast, other bundlers like Webpack have already integrated such features effectively, pushing other platforms to evolve rapidly while Meteor stays behind. Moreover, other bundlers have adopted a range of plugins that empower developers to deliver solutions more efficiently, providing clear benefits for those familiar with these tools.
 
-Video demo:
-https://www.loom.com/share/50b9e1a513904b138fb772a332facbfb
+This repository aims to enrich Meteor projects with a straightforward yet powerful solution, enabling developers to incorporate the latest bundler trends and capabilities into their projects as needed.
 
-## Running the template
+The decision to choose Webpack is based on its robustness, wide usage, and continuous maintenance, along with the abundance of extensions and features it offers. However, it is important to note that the same solution can be adapted to other popular bundlers with some configuration adjustments. I provide you here an example of Webpack configuration in this repository for your reference.
+
+## How
+
+The solution is straightforward: mix the power of both Meteor and Webpack to construct your app.
+
+- Let Webpack to compile just your app code, taking advantage of all the bundler benefits it offers.
+- Let Meteor seamlessly insert its modules into the app code.
+
+This approach allows you to enjoy the best of both worlds.
+
+With Webpack, your app bundle becomes lean, yet robust and secure, ready to go live with confidence. By incorporating Meteor, you unlock a high amount of powerful features, including reactivity, a simple API, data isomorphism, a collection of well-crafted packages for rapid development, an so on.
+
+- The `webpack.config.js` file contains essential configurations for both client and server environments, covering development and production settings.
+- The `ui/main.jsx` and `api/main.js` files are designated as entry points for the app code and are properly configured in Webpack to facilitate the app's compilation.
+- Two app artifacts are generated after Webpack compilation: `client/client.js` and `server/server.js`. These files become the new entry points for the Meteor app, allowing it to recognize and utilize the Meteor packages properly.
+
+The expected outcome is achieved: the app code is compiled by Webpack, and then Meteor runs the Webpack application, making it fully compatible with the Meteor packages. It's important to note that specific configurations can also be applied in the webpack.config.js file to fine-tune the setup for individual requirements.
+
+The `.meteorignore` file is configured for Meteor to exclude the app code located within the `ui/` and `api/` directories for the watching development processes. Webpack exclusively handles the compilation and management of these folders now.
+
+## Hands-in
+
+The scripts are described in the `package.json` and those enforce the proper development experience and production deploy.
 
 ### Install dependencies
 
@@ -37,11 +47,21 @@ https://www.loom.com/share/50b9e1a513904b138fb772a332facbfb
 meteor npm install
 ```
 
-### Running
+### Running the app
 
 ```bash
-meteor
+meteor npm start
 ```
+
+### Visualize the app bundles
+
+```bash
+meteor npm run visualize
+```
+
+On `http://localhost:3000` you still have the information gathered by Meteor bundle-visualizer package.
+
+With `http://localhost:8888` (client) and `http://localhost:8889` (server) you have the bundle information of the app code bundled by Webpack thanks to the [`webpack-bundle-analyzer`](https://www.npmjs.com/package/webpack-bundle-analyzer).
 
 ### Cleaning up you local db
 
@@ -50,156 +70,57 @@ meteor reset
 ```
 
 ### Deploy to Galaxy with free MongoDB
+
 ```bash
-meteor deploy <select a subdomain>.meteorapp.com --free --mongo
+meteor npm run deploy -- --free --mongo
 ```
 
-## Done
-- Integrate to Chakra-UI
-- Use ESLint, Prettier, and Husky
-- Host in Galaxy
-- Meteor APM monitoring
-- Use React Router 6 and Lazy Loading
-- Use React Hook Form and Zod for validation
-- Galaxy SEO Support
-- Define directory structure
-- Add database migrations
+## What is supported so far?
 
-## Main Meteor packages
-- react-meteor-data
-- percolate:migrations
-- force-ssl
-- mdg:seo
-- aldeed:collection2
+### Tree Shaking
 
-## Tech Explanation
+Webpack configures Tree Shaking effictively when goind to production mode.
 
-### How is the project structured?
+The best way to check about it is to run the bundler visualizer. In this app example, the bundled has been reduced from ~1.8MB to 1MB. Just imagine in other large apps.
 
-Before explaining, this template is inspired by the works of [Alex Kondov](https://alexkondov.com/): [Tao of Node ](https://alexkondov.com/tao-of-node/) and [Tao of React](https://alexkondov.com/tao-of-react/)
+### Secured Code
 
-Most Meteor apps are built similarly to a monorepo with their divisions for the back end and front end declared respectively in `ui` and `api` folders. You can have a common folder to share code between the frontend and backend. For example, if you use TypeScript, you can share types in your codebase.
+Thanks to the [Webpack's DefinePlugin](https://webpack.js.org/plugins/define-plugin/) the configuration describes a variable replacement for `Meteor.isXXX`-like variables. Therefore, any specific environment code will be effectively wiped out from the final bundle. Like `Meteor.isServer` and `Meteor.isClient` removing properly behaviors and sensitive information from their envs. Also enabled for `Meteor.isDevelopment` and `Meteor.isProduction`.
 
-![Project structure](README-Assets/project_structure.png)
+And if that is not enough, thanks to a Webpack plugin named [`webpack-strip-block`](https://www.npmjs.com/package/webpack-strip-block), comment delimiters exist to remove parts of the code the same way. Like `/* server:start */ CODE /* server:end */` that will remove properly the server code from the client code.
 
-A good practice that needs to be pointed out is organizing the folders by feature so that when we think about that specific domain feature, we only need to go to that feature folder, and everything exclusive to that feature should be there.
+These two are also limitations on Meteor bundler.
 
-We usually place things in the common directory when we have items that will be used in many places.
+### Cache
 
-### Backend decisions
+Cache for Webpack is also enabled to speed up cold and incremental building. Besides, development mode won't include any node modules included on the app code, those will be provided by Meteor cache mechanisms which are better in this sense. This speeds up the development experience, Webpack will get few ms to recompile just the app code, not thrid part dependencies, and then Meteor reacts for rebuilding fast with all other modules already cached.
 
-In this template, we have chosen to use Mongo, shipped out of the box with Meteor.js, and added some packages to make it even more productive. That being said, we decided to use `simpl-schema` and `percolate:migrations`. The first one is for validating schemas in runtime, and the second one is for creating database migrations.
+## Downsides
 
-#### Database Migrations
+While this approach offers numerous advantages, it does come with its own set of disadvantages. To be able to adapt existing apps using this approach you must ensure to handle these:
 
-> Questions on how to structure your migrations ?
->
-> **Use api/db/migration.js as your reference**
+### No Nested Imports
 
-* * *
+The absence of nested imports, a specific feature native to Meteor bundler that allows for deferred logic loading. Nested imports have proven to have a positive impact on app performance. As technology evolves, other compilers might not yet recognize nested imports, just as the case with features like Fibers, which were adopted but haven't become a standard and are now being phased out.
 
-This is the kind of feature that sometimes comes in handy. Whenever the server starts, it runs the code below located in `api/main.js`:
+### Dynamic imports
 
-```javascript
-import { Meteor } from "meteor/meteor";
-import { Migrations } from "meteor/percolate:migrations";
-import "./db/migrations";
-import "./tasks/tasks.methods";
-import "./tasks/tasks.publications";
+Dynamic imports can still be utilized in this approach, but they function similarly to Webpack's implementation. In the basic configuration, Webpack is set up to perform code splitting and generate chunks stored in the /public/bundles folder, which will load as expected using Webpack's approach.
 
-/**
- * This is the server-side entry point
- */
-Meteor.startup(() => {
-  Migrations.migrateTo("latest");
-});
-```
+However, Meteor's dynamic imports rely on the DDP protocol to serve the chunks, and this can present challenges. In the context of this approach, Meteor's dynamic imports won't work optimally, despite attempts to address the issue. From my perspective, relying on a more standardized approach appears to be a preferable choice. Besides, these bundles will be stored as files on the native app itself, a current limitations on dynamic imports in Meteor.
 
-It gathers all migrations that have not been applied and applies them.
+## Improvements
 
-A great use for migrations is when you have a change in your database, and you might need everyone to have at least the default data.
+This provides a straightforward approach for structuring a project that gets the power of two compilers to create a robust solution. As mentioned earlier, this approach can be adapted for any other bundler, such as Vite or other popular choices.
 
-For more details, you can check [the package docs](https://github.com/percolatestudio/meteor-migrations).
+There are additional configurations that in Webpack can be done which depends on the specific nature of the project. In my own projects, I successfully implemented the following configurations:
 
-#### Schemas
-
-Schemas are a way to ensure that the data coming from the frontend is as expected and sanitized.
-
-We have decided to use `simpl-schema`, attaching it to our collection as you can see in `api/tasks/tasks.collection.js`. By doing this, all data that goes into our Database is validated and follows the structure we defined. You can see how a Task is structured, and having that schema, we can start implementing methods and publications.
-
-Don't forget to check [simpl-schema docs](https://www.npmjs.com/package/simpl-schema) in case of doubts on how to use it.
-
-#### Server Connection
-
-Following the idea of having a folder for each feature, and if it connects to the frontend, we need to provide a way to connect.
-
-Meteor works similarly to [tRPC](https://trpc.io/) and [Blitz.js](https://blitzjs.com/). This model has server functions that get called through a Remote Procedure Call (RPC). In this template, calls that are related to tasks are in the `api/tasks/tasks.methods.js` folder.
-
-```javascript
-/**
- Removes a task from the Tasks collection.
- @async
- @function removeTask
- @param {Object} taskData - The task data.
- @param {string} taskData.taskId - The ID of the task to remove.
- @returns {Promise<void>}
- */
-async function removeTask({ taskId }) {
-  check(taskId, String);
-  await checkTaskOwner({ taskId });
-  return Tasks.removeAsync(taskId);
-}
-// ...
-Meteor.methods({
-  insertTask,
-  removeTask,
-  toggleTaskDone,
-});
-```
-
-So in order to call this server method, we need to call it by its name. It would look like this:
-
-This sample comes from `ui/tasks/TaskItem.jsx`:
-
-```javascript
-async function onDelete(_id) {
-  await Meteor.callAsync('removeTask', { taskId: _id });
-}
-```
-
-#### Subscriptions
-
-MeteorJS supports subscriptions out of the box that can be seen in `api/tasks/tasks.publications.js` these publications are called in a similar way to RPC methods, but their values are reactive. For more details on how to deal and think in reactive programming, [Andre Stalz ](http://andre.staltz.com)has [this gist introducing Reactive Programming, ](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)and [Kris Kowal](https://github.com/kriskowal) has [this Repo](https://github.com/kriskowal/gtor) that discusses the theory of reactivity in-depth.
-
-> For using subscription as you can see in our docs, is similar to using methods. In React we use meteor/react-meteor-data for having a react-way of calling those methods
-
-For a good example of Subscriptions, you can look in `ui/tasks/TasksPage.jsx`
-
-### Frontend decisions
-
-![Task Form](README-Assets/task_example.png)
-
-#### React with Meteor is &lt;3
-
-As for our frontend framework, we have chosen React for its productive ecosystem and simplicity. Meteor has a package for querying data using hooks, which makes you think only about bringing solutions to life.
-
-For more information, you can check [react-meteor-data repo](https://github.com/meteor/react-packages/tree/master/packages/react-meteor-data#react-meteor-data) for more details on using the best of them.
-
-#### Forms
-
-As one of the key parts of the frontend, we have chosen a library to help us deal with this piece. React Hook Form is a performant, flexible, and extensible library with easy-to-use validation. A good template for creating this kind of form is located in `ui/tasks/TaskForm.jsx`. It is also integrated with Zod and Meteor by its call method.
-
-Want to know more and how to create forms with React Hook Form? [their documentation](https://www.react-hook-form.com).
-
-#### The productivity core: Chakra-UI
-
-![Sign in Dark](README-Assets/sign_in_dark.png)
-
-![Sign in Light](README-Assets/sign_in_light.png)
-
-For our UI components, we have chosen Chakra UI because of its productivity that matches what Meteor does in the backend creating a lovely flow with an outstanding Developer Experience.
-
-We have included Dark and Light modes. It can be seen those configs in `ui/App.jsx`
-
-You can see Chakra-UI's full component list on t[heir site](https://chakra-ui.com/getting-started)
-
+- [Workbox Webpack plugin](https://developer.chrome.com/docs/workbox/modules/workbox-webpack-plugin/) for Service Worker implementation for PWA
+- [Assets management via Webpack Loaders](https://webpack.js.org/guides/asset-management/) (images, fonts, json, pdf, and so on.)
+- Meteor testing system using Webpack compilations
+- [SWC](https://swc.rs/) for code transpiler
+- [JS Obfuscator Webpack](https://github.com/javascript-obfuscator/webpack-obfuscator)
+- Typescript Support with check on compile time
+- Eslint Support with check on compile time
+- Style (SCSS) compilation
+- and much more
