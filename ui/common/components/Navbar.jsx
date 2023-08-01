@@ -28,7 +28,7 @@ export function Navbar() {
             fontFamily="heading"
             textAlign="left"
           >
-            Simple Tasks
+            Simple Tasks (Webpack)
           </Text>
         </Flex>
 

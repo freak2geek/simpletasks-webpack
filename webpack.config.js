@@ -48,7 +48,7 @@ function createBabelConfig() {
 function createCacheStrategy() {
     return {
         cache: {
-            name: 'babel',
+            name: `babel-${mode}`,
             type: 'filesystem',
             allowCollectingMemory: true,
         },

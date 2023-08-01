@@ -16,7 +16,8 @@
     "prettier": "prettier --write \"**/*.js\" \"**/*.jsx\"",
     "check": "npm run eslint && npm run prettier",
     "visualize:webpack": "ENABLE_BUNDLE_VISUALIZER=true meteor npm run build:webpack",
-    "visualize": "meteor npm run build:webpack && concurrently --raw \"ENABLE_BUNDLE_VISUALIZER=true meteor npm run visualize:webpack\" \"meteor --production --extra-packages bundle-visualizer\""
+    "visualize": "meteor npm run build:webpack && concurrently --raw \"ENABLE_BUNDLE_VISUALIZER=true meteor npm run visualize:webpack\" \"meteor --production --extra-packages bundle-visualizer\"",
+    "deploy": "meteor npm run build:webpack && meteor deploy"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.5",

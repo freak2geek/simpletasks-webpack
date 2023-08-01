@@ -75,6 +75,22 @@ export function Footer() {
           </a>
           .
         </Text>
+        <Text
+            fontSize="xs"
+            alignSelf={{
+              base: 'center',
+              sm: 'start',
+            }}
+        >
+          <a href="https://webpack.js.org" target="_blank">
+            Webpack
+          </a>
+          {' '}by{' '}
+          <a href="https://twitter.com/nachocodoner" target="_blank">
+            @nachocodoner
+          </a>
+          .
+        </Text>
       </Stack>
     </Box>
   );
