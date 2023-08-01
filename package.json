@@ -10,7 +10,7 @@
     "start:webpack": "concurrently -n start:webpack:client,start:webpack:server \"meteor npm run start:webpack:client\" \"meteor npm run start:webpack:server\"",
     "start": "meteor npm run start:webpack && concurrently -n start:meteor,start:webpack:client,start:webpack:server \"meteor npm run start:meteor\" \"meteor npm run start:webpack:client -- --watch\" \"meteor npm run start:webpack:server -- --watch\"",
     "build:webpack:client": "webpack build --config-name=client-production --mode=production",
-    "build:webpack:server": "webpack build --config-name=server-development --mode=production",
+    "build:webpack:server": "webpack build --config-name=server-production --mode=production",
     "build:webpack": "concurrently -n build:webpack:client,build:webpack:server \"meteor npm run build:webpack:client\" \"meteor npm run build:webpack:server\"",
     "eslint": "eslint . --fix",
     "prettier": "prettier --write \"**/*.js\" \"**/*.jsx\"",
