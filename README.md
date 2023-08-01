@@ -79,7 +79,7 @@ meteor npm run deploy -- --free --mongo
 
 ### Tree Shaking
 
-Webpack configures Tree Shaking effictively when goind to production mode.
+Webpack configures Tree Shaking effictively when going to production mode.
 
 The best way to check about it is to run the bundler visualizer. In this app example, the bundled has been reduced from ~1.8MB to 1MB. Just imagine in large apps.
 
