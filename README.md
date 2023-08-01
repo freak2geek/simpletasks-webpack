@@ -1,4 +1,4 @@
-# Simple Tasks (Webpack)
+# Simple Tasks (with Webpack)
 
 Describes a configuration to use Webpack with Meteor (or actually any bundler you like).
 
