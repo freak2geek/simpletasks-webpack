@@ -37,7 +37,7 @@ The expected outcome is achieved: the app code is compiled by Webpack, and then 
 
 The `.meteorignore` file is configured for Meteor to exclude the app code located within the `ui/` and `api/` directories for the watching development processes. Webpack exclusively handles the compilation and management of these folders now.
 
-## Hands-in
+## Hands-on
 
 The scripts are described in the `package.json` and those enforce the proper development experience and production deploy.
 
