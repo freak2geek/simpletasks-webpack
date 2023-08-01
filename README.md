@@ -1,12 +1,12 @@
 # Simple Tasks (Webpack)
 
-Describes a configuration to use Webpack with Meteor (or actually any bundler you like). Built using as a small example described in this repository: [fredmaiaarantes/simpletasks](https://github.com/fredmaiaarantes/simpletasks).
+Describes a configuration to use Webpack with Meteor (or actually any bundler you like).
+
+Built using as a small example described in this repository: [fredmaiaarantes/simpletasks](https://github.com/fredmaiaarantes/simpletasks).
 
 Demo: https://simpletaskswebpack.meteorapp.com
 
 Original: https://simpletasks.meteorapp.com
-
-Webpack integration by: [@nachocodoner](https://twitter.com/nachocodoner)
 
 ## Motivation
 
