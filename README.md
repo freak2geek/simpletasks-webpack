@@ -8,6 +8,10 @@ Demo: https://simpletaskswebpack.meteorapp.com
 
 Original: https://simpletasks.meteorapp.com
 
+
+https://github.com/freak2geek/simpletasks-webpack/assets/2581993/dbb4a3d6-39b8-4cb9-a73b-c0608f9014b3
+
+
 ## Motivation
 
 Over the years, Meteor has been instrumental in supporting numerous companies and individuals in building their products, providing a tool that facilitates the process of product development and delivery. However, as technology advances and becomes more sophisticated, it is a must for us to embrace new tools that can enhance security, performance, and development speed to adapt ourselves with the growing demands of our products.
