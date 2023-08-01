@@ -115,7 +115,7 @@ However, Meteor's dynamic imports rely on the DDP protocol to serve the chunks, 
 
 ## Improvements
 
-This provides a straightforward approach for structuring a project that gets the power of two compilers to create a robust solution. As mentioned earlier, this approach can be adapted for any other bundler, such as Vite or other popular choices.
+This provides a straightforward approach for structuring a project that gets the power of two compilers. As mentioned earlier, this approach can be adapted for any other bundler, such as Vite or other popular choices.
 
 There are additional configurations that in Webpack can be done which depends on the specific nature of the project. In my own projects, I successfully implemented the following configurations:
 
