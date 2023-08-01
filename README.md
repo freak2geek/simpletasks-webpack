@@ -33,7 +33,7 @@ With Webpack, your app bundle becomes lean, yet robust and secure, ready to go l
 - The `ui/main.jsx` and `api/main.js` files are designated as entry points for the app code and are properly configured in Webpack to facilitate the app's compilation.
 - Two app artifacts are generated after Webpack compilation: `client/client.js` and `server/server.js`. These files become the new entry points for the Meteor app (`meteor/mainModule` in `package.json`), allowing it to recognize and utilize the Meteor packages properly.
 
-The expected outcome is achieved: the app code is compiled by Webpack, and then Meteor runs the Webpack application, making it fully compatible with the Meteor packages.
+The expected outcome is achieved: the app code is compiled by Webpack, and then Meteor recompile the Webpack application, making it fully compatible with the Meteor core and packages.
 
 The `.meteorignore` file is configured for Meteor to exclude the app code located within the `ui/` and `api/` directories for the watching files development processes. Webpack exclusively handles the compilation and management of these folders now.
 
