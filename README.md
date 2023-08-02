@@ -99,6 +99,14 @@ These two are also limitations on Meteor bundler.
 
 ![](./README-Assets/secured-code.png)
 
+### Dynamic imports
+
+Dynamic imports can still be utilized in this approach, but they function similarly to Webpack's implementation. In the basic configuration, Webpack is set up to perform code splitting and generate chunks stored in the `/public/bundles` folder, which will load as expected using Webpack's approach.
+
+The following illustration depicts how dynamic imports are resolved in this project by Webpack. These dynamic imports are made accessible in the `/public/bundles` folder and are automatically served via standardized HTTP, enabling efficient caching of these modules, among other valuable benefits. Besides, these bundles will be stored as files on the native app compilation, a current limitations on dynamic imports in Meteor.
+
+![](./README-Assets/webpack-dynamic-import.png)
+
 ### Cache
 
 Cache for Webpack is also enabled to speed up cold and incremental building. Besides, development mode won't include any node modules included on the app code, those will be provided by Meteor cache mechanisms which are better in this sense. This speeds up the development experience, Webpack will get few ms to recompile just the app code, not thrid part dependencies, and then Meteor reacts for rebuilding fast with all other modules already cached. In production mode, everything app and third-part packages gets compiled by Webpack.
@@ -120,15 +128,9 @@ While this approach offers numerous advantages, it does come with its own set of
 
 The absence of nested imports, a specific feature native to Meteor bundler that allows for deferred logic loading. Nested imports have proven to have a positive impact on app performance. As technology evolves, other compilers might not yet recognize nested imports, just as the case with features like Fibers, which were adopted but haven't become a standard and are now being phased out.
 
-### Dynamic imports
+### Dynamic imports (DDP)
 
-Dynamic imports can still be utilized in this approach, but they function similarly to Webpack's implementation. In the basic configuration, Webpack is set up to perform code splitting and generate chunks stored in the `/public/bundles` folder, which will load as expected using Webpack's approach.
-
-However, Meteor's dynamic imports rely on the DDP protocol to serve the chunks, and this can present challenges. In the context of this approach, Meteor's dynamic imports won't work optimally, despite attempts to address the issue. From my perspective, relying on a more standardized approach appears to be a preferable choice. Besides, these bundles will be stored as files on the native app itself, a current limitations on dynamic imports in Meteor.
-
-The following illustration depicts how dynamic imports are resolved in this project by Webpack. These dynamic imports are made accessible in the `/public/bundles` folder and are automatically served via standardized HTTP, enabling efficient caching of these modules, among other valuable benefits.
-
-![](./README-Assets/webpack-dynamic-import.png)
+Meteor's dynamic imports rely on the DDP protocol to serve the chunks, and this can present challenges. In the context of this approach, Meteor's dynamic imports won't work optimally, despite attempts to address the issue. From my perspective, relying on a more standardized approach appears to be a preferable choice.
 
 ## Improvements
 
