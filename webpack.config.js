@@ -191,7 +191,7 @@ const clientProductionConfig = {
 
 const serverProductionConfig = {
     ...serverCommonConfig,
-    name: 'client-production',
+    name: 'server-production',
     mode: 'production',
     devtool: false,
 };
