@@ -85,7 +85,7 @@ meteor npm run deploy -- --free --mongo
 
 Webpack configures Tree Shaking effictively when going to production mode.
 
-The best way to check about it is to run the bundler visualizer. In this app example, the bundled has been reduced from ~1.8MB to 1MB. Just imagine in large apps.
+The best way to check about it is to run the bundler visualizer. In this app example, the bundled has been reduced from ~1.7MB to 1MB. Just imagine in large apps.
 
 ![](./README-Assets/tree-shaking.jpg)
 
@@ -113,9 +113,13 @@ The absence of nested imports, a specific feature native to Meteor bundler that 
 
 ### Dynamic imports
 
-Dynamic imports can still be utilized in this approach, but they function similarly to Webpack's implementation. In the basic configuration, Webpack is set up to perform code splitting and generate chunks stored in the /public/bundles folder, which will load as expected using Webpack's approach.
+Dynamic imports can still be utilized in this approach, but they function similarly to Webpack's implementation. In the basic configuration, Webpack is set up to perform code splitting and generate chunks stored in the `/public/bundles` folder, which will load as expected using Webpack's approach.
 
 However, Meteor's dynamic imports rely on the DDP protocol to serve the chunks, and this can present challenges. In the context of this approach, Meteor's dynamic imports won't work optimally, despite attempts to address the issue. From my perspective, relying on a more standardized approach appears to be a preferable choice. Besides, these bundles will be stored as files on the native app itself, a current limitations on dynamic imports in Meteor.
+
+The following illustration depicts how dynamic imports are resolved in this project by Webpack. These dynamic imports are made accessible in the `/public/bundles` folder and are automatically served via standardized HTTP, enabling efficient caching of these modules, among other valuable benefits.
+
+![](./README-Assets/webpack-dynamic-import.png)
 
 ## Improvements
 
