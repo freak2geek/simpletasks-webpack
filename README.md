@@ -107,7 +107,7 @@ Cache for Webpack is also enabled to speed up cold and incremental building. Bes
 
 Meteor's bundle visualizer provides an overview of the Meteor core, introduced packages, and the entire app code compiled by Webpack.
 
-However, with the inclusion of [Webpack's Bundle Visualizer](https://github.com/webpack-contrib/webpack-bundle-analyzer), you gain the advantage of examining the client and server code independently. This enables you to effectively verify which modules have been included or excluded in the final bundle. Additionally, the visualizer allows you to inspect each dynamic import chunk and its respective contents at any given time, providing deeper insights into your application's bundle composition and performance.
+However, with the inclusion of [Webpack's Bundle Visualizer](https://github.com/webpack-contrib/webpack-bundle-analyzer), you gain the advantage of examining the client and server code independently. This enables you to effectively verify which modules have been included or excluded in the final bundle with advanced searching capabilities. Additionally, the visualizer allows you to inspect each dynamic import chunk and its respective contents at any given time, providing deeper insights into your application's bundle composition and performance.
 
 https://github.com/freak2geek/simpletasks-webpack/assets/2581993/7525a0dd-2938-4b7d-b191-100f7f70b3cd
 
