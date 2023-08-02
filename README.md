@@ -65,7 +65,7 @@ meteor npm run visualize
 
 On `http://localhost:3000` you still have the information gathered by Meteor bundle-visualizer package.
 
-With `http://localhost:8888` (client) and `http://localhost:8889` (server) you have the bundle information of the app code bundled by Webpack thanks to the [`webpack-bundle-analyzer`](https://www.npmjs.com/package/webpack-bundle-analyzer).
+With `http://localhost:8888` (client) and `http://localhost:8889` (server) you have the bundle information of the app code bundled by Webpack thanks to the [`webpack-bundle-analyzer`](https://github.com/webpack-contrib/webpack-bundle-analyzer).
 
 ### Cleaning up you local db
 
