@@ -83,7 +83,7 @@ meteor npm run deploy -- --free --mongo
 
 ### Tree Shaking
 
-Webpack configures Tree Shaking effictively when going to production mode.
+Webpack configures [Tree Shaking](https://webpack.js.org/guides/tree-shaking/) effictively when going to production mode.
 
 The best way to check about it is to run the bundler visualizer. In this app example, the bundled has been reduced from ~1.7MB to 1MB. Just imagine in large apps.
 
@@ -101,7 +101,7 @@ These two are also limitations on Meteor bundler.
 
 ### Dynamic imports
 
-Dynamic imports can still be utilized in this approach, but they function similarly to Webpack's implementation. In the basic configuration, Webpack is set up to perform code splitting and generate chunks stored in the `/public/bundles` folder, which will load as expected using Webpack's approach.
+[Dynamic imports](https://webpack.js.org/guides/code-splitting/) can still be utilized in this approach, but they function similarly to Webpack's implementation. In the basic configuration, Webpack is set up to perform code splitting and generate chunks stored in the `/public/bundles` folder, which will load as expected using Webpack's approach.
 
 The following illustration depicts how dynamic imports are resolved in this project by Webpack. These dynamic imports are made accessible in the `/public/bundles` folder and are automatically served via standardized HTTP, enabling efficient caching of these modules, among other valuable benefits. Besides, these bundles will be stored as files on the native app compilation, a current limitations on dynamic imports in Meteor.
 
