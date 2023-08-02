@@ -103,6 +103,15 @@ These two are also limitations on Meteor bundler.
 
 Cache for Webpack is also enabled to speed up cold and incremental building. Besides, development mode won't include any node modules included on the app code, those will be provided by Meteor cache mechanisms which are better in this sense. This speeds up the development experience, Webpack will get few ms to recompile just the app code, not thrid part dependencies, and then Meteor reacts for rebuilding fast with all other modules already cached. In production mode, everything app and third-part packages gets compiled by Webpack.
 
+### Advanced Bundle Visualizer
+
+Meteor's bundle visualizer provides an overview of the Meteor core, introduced packages, and the entire app code compiled by Webpack.
+
+However, with the inclusion of [Webpack's Bundle Visualizer](https://github.com/webpack-contrib/webpack-bundle-analyzer), you gain the advantage of examining the client and server code independently. This enables you to effectively verify which modules have been included or excluded in the final bundle. Additionally, the visualizer allows you to inspect each dynamic import chunk and its respective contents at any given time, providing deeper insights into your application's bundle composition and performance.
+
+https://github.com/freak2geek/simpletasks-webpack/assets/2581993/7525a0dd-2938-4b7d-b191-100f7f70b3cd
+
+
 ## Downsides
 
 While this approach offers numerous advantages, it does come with its own set of disadvantages. To be able to adapt existing apps using this approach you must ensure to handle these:
