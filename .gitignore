@@ -2,6 +2,7 @@
 client/
 server/
 public/bundles
+dist/
 
 # Logs
 logs
