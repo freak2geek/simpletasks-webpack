@@ -39,3 +39,30 @@ Migrations.add({
     next();
   }),
 });
+
+Migrations.add({
+  version: 3,
+  name: 'Add a task that is depending on the environment.',
+  up: Meteor.wrapAsync(async (_, next) => {
+    const createdAt = new Date();
+    const { _id: userId } = Accounts.findUserByUsername('fredmaia');
+
+    /* development:start */
+    await Tasks.insertAsync({
+      description: 'Deploy to Production',
+      userId,
+      createdAt,
+    });
+    /* development:end */
+
+    /* production:start */
+    await Tasks.insertAsync({
+      description: 'Test Production',
+      userId,
+      createdAt,
+    });
+    /* production:end */
+
+    next();
+  }),
+});
