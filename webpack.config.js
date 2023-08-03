@@ -6,10 +6,15 @@ const webpack = require('webpack');
 
 const enableBundleVisualizer = process.env.ENABLE_BUNDLE_VISUALIZER === 'true';
 
+const configNameIndex = process.argv.findIndex((arg) => arg.startsWith('--config-name'));
+const configName = configNameIndex !== -1 ? process.argv[configNameIndex].replace(/--config-name=?/, '') : 'default';
+
 const mode = process.argv.find(_arg => _arg.includes('--mode=production')) ? 'production' : 'development';
 
 // eslint-disable-next-line no-console
 console.log('[i] Mode:', mode);
+// eslint-disable-next-line no-console
+console.log('[i] Config:', configName);
 
 const ignoreNpmModules = nodeExternals({
     modulesFromFile: true,
