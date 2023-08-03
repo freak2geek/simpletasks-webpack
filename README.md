@@ -73,6 +73,16 @@ With `http://localhost:8888` (client) and `http://localhost:8889` (server) you h
 meteor reset
 ```
 
+### Cleaning up cache
+
+To clean the Meteor's and Webpack's cache, including node_modules.
+
+```bash
+meteor npm run clean
+```
+
+Useful to avoid compilation errors caused by the state of caches. Don't forget to `meteor npm install` again.
+
 ### Deploy to Galaxy with free MongoDB
 
 ```bash
