@@ -153,6 +153,7 @@ There are additional configurations that in Webpack can be done which depends on
 - Meteor testing system using Webpack compilations
 - [SWC](https://swc.rs/) for code transpiler
 - [JS Obfuscator Webpack](https://github.com/javascript-obfuscator/webpack-obfuscator)
+- [Image Minimizer Webpack plugin](https://github.com/webpack-contrib/image-minimizer-webpack-plugin)
 - Typescript Support with check on compile time
 - Eslint Support with check on compile time
 - Style (SCSS) compilation
