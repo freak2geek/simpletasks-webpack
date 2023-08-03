@@ -14,7 +14,7 @@
     "build:webpack": "concurrently -n build:webpack:client,build:webpack:server \"meteor npm run build:webpack:client\" \"meteor npm run build:webpack:server\"",
     "build:meteor": "del-cli ./dist && meteor build --directory ./dist && meteor npm install --prefix ./dist/bundle/programs/server",
     "build": "meteor npm run build:webpack && meteor npm run build:meteor",
-    "build:force": "meteor npm run clean && meteor npm install && meteor npm run build:webpack && meteor npm run build:meteor",
+    "build:force": "meteor npm run clean && meteor npm install && meteor npm run build",
     "eslint": "eslint . --fix",
     "prettier": "prettier --write \"**/*.js\" \"**/*.jsx\"",
     "clean": "del-cli '.meteor/local/*' '!.meteor/local/db' && del-cli 'node_modules'",
