@@ -157,4 +157,4 @@ There are additional configurations that in Webpack can be done which depends on
 - Typescript Support with check on compile time
 - Eslint Support with check on compile time
 - Style (SCSS) compilation
-- and much more
+- [and much more](https://github.com/orgs/webpack-contrib/repositories?type=source)
