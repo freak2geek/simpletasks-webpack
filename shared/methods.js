@@ -1,5 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';
+import { random } from 'lodash-es';
+import { shortscale } from 'shortscale';
 import { Tasks } from '../api/tasks/tasks';
 import { checkLoggedIn } from '../api/lib/auth';
 
@@ -10,7 +12,7 @@ console.log('SECRET_WONT_LEAK_CLIENT', SECRET_WONT_LEAK_CLIENT);
 /* server:end */
 
 /* server:start */async/* server:end */ function insertRandomTask() {
-    const description = Random.id();
+    const description = `${Random.id()}/${shortscale(random(100))}`;
     checkLoggedIn();
 
     const task = {
