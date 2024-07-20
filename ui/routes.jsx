@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes as ReactRoutes } from 'react-router-dom';
-import { Layout } from './common/components/Layout';
+import { BrowserRouter, Routes as ReactRoutes, Route } from 'react-router-dom';
+import { Layout } from './common/components/layout';
 
 export const routes = {
   root: '/',
@@ -8,9 +8,9 @@ export const routes = {
   tasks: '/tasks',
 };
 
-const LoginPage = React.lazy(() => import('./pages/auth/sign-in-page'));
-const NotFoundPage = React.lazy(() =>
-  import('./pages/not-found/not-found-page')
+const SignInPage = React.lazy(() => import('./pages/auth/sign-in-page'));
+const NotFoundPage = React.lazy(
+  () => import('./pages/not-found/not-found-page')
 );
 const TasksPage = React.lazy(() => import('./pages/tasks/tasks-page'));
 
@@ -21,7 +21,7 @@ export function Routes() {
         <Route
           element={
             <Layout loggedOnly={false}>
-              <LoginPage />
+              <SignInPage />
             </Layout>
           }
           index

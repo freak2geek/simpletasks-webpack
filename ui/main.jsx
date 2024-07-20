@@ -1,9 +1,9 @@
+import { Meteor } from 'meteor/meteor';
 import React, { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import '../shared/methods';
-import { Meteor } from 'meteor/meteor';
+import { Loading } from './common/components/loading';
 import { UIProvider } from './common/components/ui-provider';
-import { Loading } from './common/components/Loading';
 import { Routes } from './routes';
 
 /**

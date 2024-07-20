@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import * as z from 'zod';
-import { useForm } from 'react-hook-form';
+import { useToast } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
-import { useToast } from '@chakra-ui/react';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import * as z from 'zod';
 
 const schema = z.object({
   username: z.string().min(1, 'Username is required'),
@@ -23,13 +23,12 @@ export function useLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  const {
-    handleSubmit,
-    register,
-    formState,
-  } = useForm({ defaultValues, resolver: zodResolver(schema) });
+  const { handleSubmit, register, formState } = useForm({
+    defaultValues,
+    resolver: zodResolver(schema),
+  });
 
-  const handleError = error => {
+  const handleError = (error) => {
     if (error) {
       const reason = error?.reason || 'Sorry, please try again.';
       toast({
@@ -42,17 +41,29 @@ export function useLogin() {
     navigate('/tasks');
   };
 
-  const loginOrCreateUser = values => {
+  const loginOrCreateUser = (values) => {
     const { username, password } = values;
     if (isSignup) {
-      Accounts.createUser({ username, password }, error => {
+      Accounts.createUser({ username, password }, (error) => {
         handleError(error);
       });
     } else {
-      Meteor.loginWithPassword(username, password, error => {
+      Meteor.loginWithPassword(username, password, (error) => {
         handleError(error);
       });
     }
+  };
+
+  const handleGithubLogin = () => {
+    Meteor.loginWithGithub(
+      {
+        requestPermissions: ['user'],
+        loginStyle: 'popup',
+      },
+      (error) => {
+        handleError(error);
+      }
+    );
   };
 
   return {
@@ -64,5 +75,6 @@ export function useLogin() {
     handleSubmit,
     register,
     formState,
+    handleGithubLogin,
   };
 }

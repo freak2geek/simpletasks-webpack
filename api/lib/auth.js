@@ -1,5 +1,5 @@
-import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
+import { Meteor } from 'meteor/meteor';
 import { Tasks } from '../tasks/tasks';
 
 /**
@@ -8,7 +8,7 @@ import { Tasks } from '../tasks/tasks';
  */
 export function checkLoggedIn() {
   if (!Meteor.userId()) {
-    throw new Meteor.Error('Error', 'Access denied.');
+    throw new Meteor.Error('Error', 'Not authorized.');
   }
 }
 

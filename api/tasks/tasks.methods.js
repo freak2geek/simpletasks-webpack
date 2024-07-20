@@ -1,7 +1,7 @@
-import { Tasks } from './tasks';
+import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
 import { checkLoggedIn, checkTaskOwner } from '../lib/auth';
-import { check } from 'meteor/check';
+import { Tasks } from './tasks';
 
 /**
 
@@ -17,6 +17,7 @@ async function insertTask({ description }) {
   checkLoggedIn();
   const task = {
     description,
+    done: false,
     userId: Meteor.userId(),
     createdAt: new Date(),
   };
@@ -29,7 +30,7 @@ async function insertTask({ description }) {
  @function removeTask
  @param {Object} taskData - The task data.
  @param {string} taskData.taskId - The ID of the task to remove.
- @returns {Promise<void>}
+ @returns {Promise<number>}
  */
 async function removeTask({ taskId }) {
   check(taskId, String);
@@ -43,7 +44,7 @@ async function removeTask({ taskId }) {
  @function toggleTaskDone
  @param {Object} taskData - The task data.
  @param {string} taskData.taskId - The ID of the task to toggle.
- @returns {Promise<void>}
+ @returns {Promise<number>}
  */
 async function toggleTaskDone({ taskId }) {
   check(taskId, String);

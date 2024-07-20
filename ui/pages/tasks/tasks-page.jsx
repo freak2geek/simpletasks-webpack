@@ -1,24 +1,37 @@
+import {
+  Box,
+  Button,
+  HStack,
+  Heading,
+  Spinner,
+  Stack,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import React, { Suspense } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { TaskForm } from './components/task-form';
-import { Box, Button, Heading, HStack, Spinner, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 import { TaskItem } from './components/task-item';
 import { useTasks } from './hooks/use-tasks';
+import '/api/tasks/tasks.methods';
 
-/* eslint-disable import/no-default-export */
 export default function TasksPage() {
-  const { hideDone, setHideDone, tasks, pendingCount } = useTasks();
+  const { hideDone, setHideDone, tasks, count, pendingCount } = useTasks();
   return (
     <>
       <Stack textAlign="center" spacing={{ base: 8 }} py={{ base: 10 }}>
         <Heading fontWeight={600}>
-          <Text as="span" bgGradient="linear(to-l, #675AAA, #4399E1)" bgClip="text">
+          <Text
+            as="span"
+            bgGradient="linear(to-l, #675AAA, #4399E1)"
+            bgClip="text"
+          >
             Simple Tasks (Webpack)
           </Text>
         </Heading>
       </Stack>
-      <TaskForm/>
-      <Suspense fallback={<Spinner/>}>
+      <TaskForm />
+      <Suspense fallback={<Spinner />}>
         <Box
           mt={8}
           py={{ base: 2 }}
@@ -36,7 +49,7 @@ export default function TasksPage() {
                 color={useColorModeValue('gray.600', 'gray.400')}
                 fontSize="xs"
               >
-                You have {tasks.length} {tasks.length === 1 ? 'task ' : 'tasks '}
+                You have {count} {count === 1 ? 'task ' : 'tasks '}
                 and {pendingCount || 0} pending.
               </Text>
             </Box>
@@ -61,8 +74,8 @@ export default function TasksPage() {
               </Button>
             </Stack>
           </HStack>
-          {tasks.map(task => (
-            <TaskItem key={task._id} task={task}/>
+          {tasks.map((task) => (
+            <TaskItem key={task._id} task={task} />
           ))}
         </Box>
       </Suspense>
