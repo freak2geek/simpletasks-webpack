@@ -40,20 +40,21 @@ function excludeBlockStrip(excludeConfig) {
         : undefined;
 }
 
-function createBabelConfig() {
-    return ({
+function createEsbuildConfig() {
+    return {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: {
-            loader: 'babel-loader',
-        },
-    });
+        loader: 'esbuild-loader',
+        options: {
+            target: 'es2015',
+        }
+    };
 }
 
 function createCacheStrategy() {
     return {
         cache: {
-            name: `babel-${mode}`,
+            name: `esbuild-${mode}`,
             type: 'filesystem',
             allowCollectingMemory: true,
         },
@@ -90,7 +91,7 @@ const clientCommonConfig = {
     },
     module: {
         rules: [
-            createBabelConfig(),
+            createEsbuildConfig(),
             excludeBlockStrip({ exclude: 'server' }),
             excludeBlockStrip({ exclude: 'test' }),
             ...((mode === 'development' ? ([excludeBlockStrip({ exclude: 'production' })]) : [excludeBlockStrip({ exclude: 'development' })])),
@@ -142,7 +143,7 @@ const serverCommonConfig = {
     },
     module: {
         rules: [
-            createBabelConfig({ exclude: 'client' }),
+            createEsbuildConfig(),
             excludeBlockStrip({ exclude: 'client' }),
             excludeBlockStrip({ exclude: 'test' }),
             ...((mode === 'development' ? ([excludeBlockStrip({ exclude: 'production' })]) : [excludeBlockStrip({ exclude: 'development' })])),
